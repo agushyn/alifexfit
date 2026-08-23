@@ -1,0 +1,23 @@
+<?php
+
+namespace App\Policies;
+
+use App\Models\AuditLog;
+use App\Models\User;
+
+class AuditLogPolicy
+{
+    public function viewAny(User $user): bool
+    {
+        return $user->isSuperAdmin() || $user->hasPermission('reports.view');
+    }
+
+    public function view(User $user, AuditLog $log): bool
+    {
+        if ($user->isSuperAdmin()) {
+            return true;
+        }
+
+        return $user->hasPermission('reports.view') && (int) $user->gym_id === (int) $log->gym_id;
+    }
+}
