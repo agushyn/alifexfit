@@ -5,7 +5,7 @@
     "scripts": {
         "build": "vite build",
         "dev": "vite"
-        "output": "public"
+        
     },
     "devDependencies": {
         "@tailwindcss/vite": "^4.0.0",
